@@ -94,16 +94,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </section></section>
 <section><section id="benefits" class="titleslide slide level1"><h1>Benefits</h1></section><section id="mutability-is-the-exception" class="slide level2">
 <h2>Mutability is the Exception</h2>
+</section><section id="mutability-is-the-exception-1" class="slide level2">
+<h2>Mutability is the Exception</h2>
+<blockquote>
+<p>Classes should be immutable unless there's a very good reason to make them mutable.</p>
+<p>⁠— Joshua Bloch, in &quot;Effective Java&quot;</p>
+</blockquote>
+</section><section id="mutability-is-the-exception-2" class="slide level2">
+<h2>Mutability is the Exception</h2>
 <div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> main() <span class="op">{</span>
     <span class="kw">let</span> count = <span class="dv">5</span>;
     <span class="kw">let</span> <span class="kw">mut</span> numbers = HashSet::new();
     <span class="kw">for</span> x <span class="kw">in</span> <span class="dv">0.</span>.count <span class="op">{</span>
         numbers.insert(x);
     <span class="op">}</span>
-    <span class="pp">println!</span>(<span class="st">&quot;There are {} numbers&quot;</span>,
-             numbers.len());
+    <span class="pp">println!</span>(
+        <span class="st">&quot;There are {} numbers&quot;</span>,
+        numbers.len()
+    );
+<span class="op">}</span></code></pre></div>
+</section><section id="mutability-is-the-exception-3" class="slide level2">
+<h2>Mutability is the Exception</h2>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">struct</span> Point <span class="op">{</span>
+    x: <span class="dt">f64</span>,
+    y: <span class="dt">f64</span>,
+<span class="op">}</span>
+
+<span class="kw">impl</span> Point <span class="op">{</span>
+    <span class="kw">fn</span> dist_from_origin(&amp;<span class="kw">self</span>) -&gt; <span class="dt">f64</span> <span class="op">{</span>
+        (<span class="kw">self</span>.x * <span class="kw">self</span>.x + <span class="kw">self</span>.y * <span class="kw">self</span>.y)
+            .sqrt()
+    <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 </section><section id="no-invalid-references" class="slide level2">
+<h2>No Invalid References</h2>
+</section><section id="no-invalid-references-1" class="slide level2">
 <h2>No Invalid References</h2>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// C++</span>
 <span class="dt">int</span> main() {
@@ -113,7 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     v.push_back(<span class="st">&quot;world&quot;</span>);
     <span class="bu">std::</span>count &lt;&lt; x;
 }</code></pre></div>
-</section><section id="no-invalid-references-1" class="slide level2">
+</section><section id="no-invalid-references-2" class="slide level2">
 <h2>No Invalid References</h2>
 <div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="co">// Rust</span>
 <span class="dt">int</span> main() <span class="op">{</span>
@@ -123,7 +148,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     v.push(<span class="st">&quot;world&quot;</span>);
     <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, x);
 <span class="op">}</span></code></pre></div>
-</section><section id="no-invalid-references-2" class="slide level2">
+</section><section id="no-invalid-references-3" class="slide level2">
 <h2>No Invalid References</h2>
 <pre class="text"><code>error[E0502]: cannot borrow `v` as mutable because it is also borrowed as immutable
  --&gt; use-after-free.rs:6:5
@@ -134,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   |     ^^^^^^^^^^^^^^^ mutable borrow occurs here
 7 |     println!(&quot;{}&quot;, x);
   |                    - immutable borrow later used here</code></pre>
-</section><section id="no-invalid-references-3" class="slide level2">
+</section><section id="no-invalid-references-4" class="slide level2">
 <h2>No Invalid References</h2>
 <div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="co">// Rust</span>
 <span class="dt">int</span> main() <span class="op">{</span>
@@ -144,7 +169,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     v.push(<span class="st">&quot;world&quot;</span>);    <span class="co">// ** conflict</span>
     <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, x);
 <span class="op">}</span></code></pre></div>
-</section><section id="no-invalid-references-4" class="slide level2">
+</section><section id="no-invalid-references-5" class="slide level2">
 <h2>No Invalid References</h2>
 <blockquote>
 <p>&quot;During the 2 years of development, we have never experienced any memory-related bugs like use-after-free or double free.&quot;</p>

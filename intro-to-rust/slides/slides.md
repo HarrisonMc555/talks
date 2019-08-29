@@ -34,6 +34,15 @@ fn main() {
 
 ## Mutability is the Exception
 
+## Mutability is the Exception
+
+> Classes should be immutable unless there's a very good reason to make them
+> mutable.
+>
+> ⁠— Joshua Bloch, in "Effective Java"
+
+## Mutability is the Exception
+
 ```rust
 fn main() {
     let count = 5;
@@ -41,11 +50,31 @@ fn main() {
     for x in 0..count {
         numbers.insert(x);
     }
-    println!("There are {} numbers",
-             numbers.len());
+    println!(
+        "There are {} numbers",
+        numbers.len()
+    );
 }
 ```
 
+## Mutability is the Exception
+
+```rust
+struct Point {
+    x: f64,
+    y: f64,
+}
+
+impl Point {
+    fn dist_from_origin(&self) -> f64 {
+        (self.x * self.x + self.y * self.y)
+            .sqrt()
+    }
+}
+```
+
+
+## No Invalid References
 
 ## No Invalid References
 

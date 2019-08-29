@@ -6,6 +6,8 @@ fn main() {
     for x in 0..count {
         numbers.insert(x);
     }
-    println!("There are {} numbers",
-             numbers.len());
+    println!(
+        "There are {} numbers",
+        numbers.len()
+    );
 }
