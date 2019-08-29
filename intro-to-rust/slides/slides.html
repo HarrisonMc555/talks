@@ -86,10 +86,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="fragment">Explicit mutability</li>
 </ul>
 </section></section>
-<section><section id="example" class="titleslide slide level1"><h1>Example</h1></section><section id="hello-world" class="slide level2">
+<section><section id="examples" class="titleslide slide level1"><h1>Examples</h1></section><section id="hello-world" class="slide level2">
 <h2>Hello World</h2>
 <div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> main() <span class="op">{</span>
     <span class="pp">println!</span>(<span class="st">&quot;Hello, World&quot;</span>);
+<span class="op">}</span></code></pre></div>
+</section><section id="function" class="slide level2">
+<h2>Function</h2>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> increment(x: <span class="dt">i32</span>) -&gt; <span class="dt">i32</span> <span class="op">{</span>
+    x + <span class="dv">1</span>
 <span class="op">}</span></code></pre></div>
 </section></section>
 <section><section id="benefits" class="titleslide slide level1"><h1>Benefits</h1></section><section id="mutability-is-the-exception" class="slide level2">
@@ -122,8 +127,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">impl</span> Point <span class="op">{</span>
     <span class="kw">fn</span> dist_from_origin(&amp;<span class="kw">self</span>) -&gt; <span class="dt">f64</span> <span class="op">{</span>
-        (<span class="kw">self</span>.x * <span class="kw">self</span>.x + <span class="kw">self</span>.y * <span class="kw">self</span>.y)
-            .sqrt()
+        (<span class="kw">self</span>.x * <span class="kw">self</span>.x + <span class="kw">self</span>.y * <span class="kw">self</span>.y).sqrt()
+    <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+</section><section id="mutability-is-the-exception-4" class="slide level2">
+<h2>Mutability is the Exception</h2>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">struct</span> Classroom <span class="op">{</span>
+    name: <span class="dt">String</span>,
+    students: <span class="dt">Vec</span>&lt;<span class="dt">String</span>&gt;,
+<span class="op">}</span>
+
+<span class="kw">impl</span> Classroom <span class="op">{</span>
+    <span class="kw">fn</span> add_student(&amp;<span class="kw">mut</span> <span class="kw">self</span>, student: &amp;<span class="dt">str</span>) <span class="op">{</span>
+        <span class="kw">self</span>.students.push(student.to_string());
     <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 </section><section id="no-invalid-references" class="slide level2">

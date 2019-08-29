@@ -5,8 +5,7 @@ struct Point {
 
 impl Point {
     fn dist_from_origin(&self) -> f64 {
-        (self.x * self.x + self.y * self.y)
-            .sqrt()
+        (self.x * self.x + self.y * self.y).sqrt()
     }
 }
 

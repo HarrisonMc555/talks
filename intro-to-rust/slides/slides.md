@@ -19,13 +19,22 @@ A programming language focused on:
   - Explicit mutability
 
 
-# Example
+# Examples
 
 ## Hello World
 
 ```rust
 fn main() {
     println!("Hello, World");
+}
+```
+
+
+## Function
+
+```rust
+fn increment(x: i32) -> i32 {
+    x + 1
 }
 ```
 
@@ -67,8 +76,23 @@ struct Point {
 
 impl Point {
     fn dist_from_origin(&self) -> f64 {
-        (self.x * self.x + self.y * self.y)
-            .sqrt()
+        (self.x * self.x + self.y * self.y).sqrt()
+    }
+}
+```
+
+
+## Mutability is the Exception
+
+```rust
+struct Classroom {
+    name: String,
+    students: Vec<String>,
+}
+
+impl Classroom {
+    fn add_student(&mut self, student: &str) {
+        self.students.push(student.to_string());
     }
 }
 ```
